@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema({
   },
   role: { // 관리자와 일반
     type: Number,
-    defalut: 0,
+    default: 0,
   },
   image: String,
   token: { // 유효성 관리
@@ -48,7 +48,6 @@ userSchema.pre('save', function ( next ) {
       bcrypt.hash(user.password, salt, function(err, hash) { //hash : 암호화된 비밀번호
         if(err) return next(err);
         user.password = hash // 비밀번호를 암호화된 비밀번호로 바꿔준다. 1234 -> ****
-        console.log("hash", hash);
         next();
       });
     });
@@ -62,7 +61,7 @@ userSchema.methods.comparePassword = function (plainPassword, cb) {
   // 암호화된 비밀번호를 복호화 할 수 없으니 plainPassword를 암호화해서 비교한다. 
   bcrypt.compare(plainPassword, this.password, function(err, isMatch){
     if(err) return cb(err);
-    cb(null, isMatch)
+    cb(null, isMatch);
   });
 }
 
@@ -93,8 +92,5 @@ userSchema.statics.findByToken = function ( token, cb) {
   });
 }
 
-
-
 const User = mongoose.model('User', userSchema);
-
 module.exports = { User };
