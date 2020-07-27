@@ -1,11 +1,23 @@
 import React, { useEffect } from 'react'
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
-function LandingPage() {
+function LandingPage(props) {
   useEffect(() => {
     axios.get('/api/hello')
       .then(response => { console.log(response)});
   }, [])
+
+  const onClickLogout = () => {
+    axios.get('api/users/logout')
+      .then(response => {
+        if(response.data.success){
+          props.history.push('/login') // landingpage로 이동
+        } else {
+          alert('Failed to logout');
+        }
+      });
+  }
 
   return (
     <div style={{
@@ -13,8 +25,9 @@ function LandingPage() {
       width: '100%', height: '100vh'
     }}>
       <h2>시작 페이지</h2>
+      <button onClick={onClickLogout}>Logout</button>
     </div>
   )
 }
 
-export default LandingPage
+export default withRouter(LandingPage);
