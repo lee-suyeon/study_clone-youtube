@@ -32,9 +32,39 @@ function Subscribe(props) {
       })
   },[])
 
+  const onClickSubscribe = () => {
+    let subscribeVariables = {
+      userTo: props.userTo,
+      userFrom: props.userFrom
+    }
+
+    if(subscribed) { // 구독중일때 -> 구독취소
+      axios.post('/api/subscribe/unSubscribe', subscribeVariables)
+        .then(response => {
+          if(response.data.success){
+            setSubscribeNumber(state => state - 1);
+            setSubscribed(prev => !prev)
+          } else {
+            alert('구독 취소 실패')
+          }
+        })
+    } else { // 구독중이 아닐 때 -> 구독하기
+      axios.post('/api/subscribe/subscribe', subscribeVariables)
+        .then(response => {
+          if(response.data.success){
+            setSubscribeNumber(state => state + 1);
+            setSubscribed(prev => !prev)
+          } else {
+            alert('구독 실패')
+          }
+        })
+    }
+  }
+
   return (
     <div>
       <button
+        onClick={onClickSubscribe}
         style={{
           backgroundColor: `${subscribed ? 'tomato' : 'powderblue'}`,
           borderRadius: '4px', color: 'white',
