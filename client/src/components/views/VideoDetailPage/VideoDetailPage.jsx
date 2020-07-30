@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom';
 import { List, Avatar, Row, Col } from 'antd';
 import axios from 'axios';
+import SideVideo from './Sections/SideVideo';
 
 
 function VideoDetailPage(props) {
@@ -40,7 +41,9 @@ function VideoDetailPage(props) {
               {/* Comments */}
             </div>
           </Col>
-          <Col lg={6} xs={24}></Col>
+          <Col lg={6} xs={24}>
+            <SideVideo />
+          </Col>
         </Row>
       </div>
     )
