@@ -8,6 +8,8 @@ import RegisterPage from './views/RegisterPage/RegisterPage';
 import Footer from './views/Footer/Footer';
 import UploadVideoPage from './views/UploadVideoPage/UploadVideoPage';
 import VideoDetailPage from './views/VideoDetailPage/VideoDetailPage';
+import SubscriptionPage from './views/SubscriptionPage/SubscriptionPage';
+
 import Auth from '../hoc/auth';
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/video/upload" component={Auth(UploadVideoPage, true)} />
           <Route exact path="/video/:videoId" component={Auth(VideoDetailPage, null)} />
+          <Route exact path="/subscription" component={Auth(SubscriptionPage, null)} />
         </Switch>
       </div>
       <Footer />
