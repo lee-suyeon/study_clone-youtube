@@ -27,6 +27,10 @@ body {
   height: 100vh;
 }
 
+button {
+  border: none;
+}
+
 input.error {
   border-color: red;
 }
