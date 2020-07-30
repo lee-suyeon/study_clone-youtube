@@ -90,4 +90,15 @@ router.get("/getVideos", (req, res) => {
     })
 });
 
+
+router.post("/getVideoDetail", (req, res) => {
+  // 클라이언트에서 보내준 videoId로 찾는다. 
+  Video.findOne({ "_id" : req.body.videoId })
+    .populate('wirter')
+    .exec(( err, videoDetail) => {
+      if(err) return res.status(400).send(err)
+      return res.status(200).json({ success: true, videoDetail })
+    })  
+});
+
 module.exports = router;
