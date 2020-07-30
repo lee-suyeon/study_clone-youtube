@@ -14,15 +14,12 @@ app.use(bodyParser.json());
 // 쿠키파서 사용하기 
 app.use(cookieParser());
 
-const mongoose = require('mongoose');
-mongoose.connect(config.mongoURI, {
-  useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
-}).then(() => console.log('MongoDb connected'))
+const mongoose = require("mongoose");
+const connect = mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
-app.get('/', (req, res) => res.send('Hello World! 안녕하세요'))
-app.get('/api/hello', (req, res) => res.send('Hello World!~~ '))
-
+app.use('/uploads', express.static('uploads')); // 화면에 썸네일 표시
 app.use('/api/video', require('./routes/video'));
 
 /******************** REGISTER ********************/
