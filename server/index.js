@@ -22,6 +22,7 @@ const connect = mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUn
 app.use('/uploads', express.static('uploads')); // 화면에 썸네일 표시
 app.use('/api/video', require('./routes/video'));
 app.use('/api/subscribe', require('./routes/subscribe'));
+app.use('/api/comment', require('./routes/comment'));
 
 /******************** REGISTER ********************/
 app.post('/api/users/register', (req, res) => {

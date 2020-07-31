@@ -83,7 +83,7 @@ router.post("/uploadVideo", (req, res) => {
 router.get("/getVideos", (req, res) => {
   // 비디오를 DB 에서 가져와서 클라이언트에 보낸다. 
   Video.find() // 비디오에 모든 정보를 가져온다. 
-    .populate('writer') // 모든 'wirter' 정보를 가져온다. (참조된 User정보까지) 
+    .populate('writer') // 모든 'writer' 정보를 가져온다. (참조된 User정보까지) 
     .exec(( err, videos ) => {
       if(err) return res.status(400).send(err);
       res.status(200).json({ success: true, videos })
@@ -94,7 +94,7 @@ router.get("/getVideos", (req, res) => {
 router.post("/getVideoDetail", (req, res) => {
   // 클라이언트에서 보내준 videoId로 찾는다. 
   Video.findOne({ "_id" : req.body.videoId })
-    .populate('wirter')
+    .populate('writer')
     .exec(( err, videoDetail) => {
       if(err) return res.status(400).send(err)
       return res.status(200).json({ success: true, videoDetail })
