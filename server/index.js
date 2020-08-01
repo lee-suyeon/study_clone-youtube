@@ -23,6 +23,7 @@ app.use('/uploads', express.static('uploads')); // 화면에 썸네일 표시
 app.use('/api/video', require('./routes/video'));
 app.use('/api/subscribe', require('./routes/subscribe'));
 app.use('/api/comment', require('./routes/comment'));
+app.use('/api/like', require('./routes/like'));
 
 /******************** REGISTER ********************/
 app.post('/api/users/register', (req, res) => {
