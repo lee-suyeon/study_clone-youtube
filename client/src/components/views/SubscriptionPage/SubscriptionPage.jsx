@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom';
+import { useSelector } from "react-redux";
 import { Card, Avatar, Col, Typography, Row } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
@@ -7,6 +8,7 @@ const { Meta } = Card;
 const { Title } = Typography;
 
 function SubscriptionPage(props) {
+  const user = useSelector(state => state.user);
   const [video, setVideo] = useState([]);
 
   // 내가 구독한 채널을 찾고 그 채널의 비디오를 찾을 수 있다.

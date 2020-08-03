@@ -45,7 +45,7 @@ function SingleComment(props) {
   
   const actions = [
     <LikeDislikes 
-      userId={localStorage.getItem('userId')} 
+      userId={user.userData._id} 
       commentId={props.comment._id}
     />,
     <span onClick={onClickOpenReply} key="comment-basic-reply-to">Reply to</span>

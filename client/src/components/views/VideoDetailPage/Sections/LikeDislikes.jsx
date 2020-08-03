@@ -29,7 +29,7 @@ function LikeDislikes(props) {
       .then(response => {
         if(response.data.success){
           // 좋아요 수
-          setDislikeNumbers(response.data.likes.length);
+          setLikeNumbers(response.data.likes.length);
           // 좋아요 상태
           response.data.likes.map(like => { // 모든 사람이 좋아요를 누른 데이터
             if(like.userId === props.userId){ // 모든 데이터 중에 내 아이디 === 내 유저 아이디 -> 내가 좋아요를 누른 상태
